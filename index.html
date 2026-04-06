@@ -1,1 +1,907 @@
-hello github
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Network</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a12;
+      --surface: #12161f;
+      --surface2: #1a1f2e;
+      --border: #2a3441;
+      --border-bright: #3a4656;
+      --text: #e0e6f0;
+      --text-dim: #8a94a6;
+      --text-bright: #f0f4f8;
+      --text-dimmed: rgba(138, 148, 166, 0.5);
+
+      --v10: #ff6b6b;
+      --v10-bg: rgba(255, 107, 107, 0.1);
+      --v10-border: rgba(255, 107, 107, 0.3);
+
+      --v15: #ff9f43;
+      --v15-bg: rgba(255, 159, 67, 0.1);
+      --v15-border: rgba(255, 159, 67, 0.3);
+
+      --v20: #4cc9f0;
+      --v20-bg: rgba(76, 201, 240, 0.1);
+      --v20-border: rgba(76, 201, 240, 0.3);
+
+      --v30: #43d043;
+      --v30-bg: rgba(67, 208, 67, 0.1);
+      --v30-border: rgba(67, 208, 67, 0.3);
+
+      --v40: #f0e65d;
+      --v40-bg: rgba(240, 230, 93, 0.1);
+      --v40-border: rgba(240, 230, 93, 0.3);
+
+      --v50: #c77dff;
+      --v50-bg: rgba(199, 125, 255, 0.1);
+      --v50-border: rgba(199, 125, 255, 0.3);
+
+      --v60: #ff8fab;
+      --v60-bg: rgba(255, 143, 171, 0.1);
+      --v60-border: rgba(255, 143, 171, 0.3);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      min-height: 100vh;
+      padding: 2rem 0;
+    }
+
+    .page {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+    .header h1 {
+      font-family: 'Space Mono', monospace;
+      font-size: 1.5rem;
+      color: var(--text-bright);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.1em;
+    }
+    .header p {
+      color: var(--text-dim);
+      font-size: 0.875rem;
+      font-family: 'Space Mono', monospace;
+    }
+
+    .section { margin-bottom: 1rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-dim);
+    }
+    .section-header::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Generic box ── */
+    .box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    .box-title {
+      font-size: 0.75rem;
+      font-family: 'Space Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 0.25rem;
+    }
+    .box-name {
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--text-bright);
+      margin-bottom: 0.25rem;
+    }
+    .box-detail {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--text-dim);
+    }
+
+    /* ── Base table — grey/neutral (used by switch and all non-Firewalla tables) ── */
+    .table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.875rem;
+    }
+    .table th {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      color: var(--text-dim);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-size: 0.75rem;
+    }
+    .table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      color: var(--text);
+    }
+    .table tr:last-child td { border-bottom: none; }
+
+    /* ── Firewalla-themed table — orange tones ── */
+    .table--fw th {
+      border-bottom-color: #3a1f00;
+      color: #a0603a;
+    }
+    .table--fw td {
+      border-bottom-color: #2a1500;
+      color: #ffb085;
+    }
+
+    /* ── Port badges (switch context — grey) ── */
+    .port-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--surface);
+      border: 1px solid var(--border-bright);
+      color: var(--text-bright);
+    }
+    .port-badge--unused {
+      color: var(--text-dimmed);
+      border-color: var(--border);
+    }
+
+    /* ── Port badges inside Firewalla box — orange tones ── */
+    .port-badge--fw {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid #3a1f00;
+      color: #ffb085;
+    }
+    .port-badge--fw-unused {
+      background: rgba(0,0,0,0.2);
+      border-color: #2a1500;
+      color: #3a2010;
+    }
+    .port-badge--fw-v10 {
+      background: rgba(0,0,0,0.3);
+      border-color: var(--v10-border);
+      color: var(--v10);
+    }
+
+    /* ── VLAN colored port badges ── */
+    .port-badge.v10 { background: var(--v10-bg); border-color: var(--v10-border); color: var(--v10); }
+    .port-badge.v15 { background: var(--v15-bg); border-color: var(--v15-border); color: var(--v15); }
+    .port-badge.v20 { background: var(--v20-bg); border-color: var(--v20-border); color: var(--v20); }
+    .port-badge.v30 { background: var(--v30-bg); border-color: var(--v30-border); color: var(--v30); }
+    .port-badge.v40 { background: var(--v40-bg); border-color: var(--v40-border); color: var(--v40); }
+    .port-badge.v50 { background: var(--v50-bg); border-color: var(--v50-border); color: var(--v50); }
+    .port-badge.v60 { background: var(--v60-bg); border-color: var(--v60-border); color: var(--v60); }
+
+    /* ── Device cards ── */
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    .device-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1.25rem;
+    }
+    .device-card-header { margin-bottom: 0.75rem; }
+    .device-card.v10 { border-top: 3px solid var(--v10); }
+    .device-card.v15 { border-top: 3px solid var(--v15); }
+    .device-card.v20 { border-top: 3px solid var(--v20); }
+    .device-card.v30 { border-top: 3px solid var(--v30); }
+    .device-card.v40 { border-top: 3px solid var(--v40); }
+    .device-card.v50 { border-top: 3px solid var(--v50); }
+    .device-card.v60 { border-top: 3px solid var(--v60); }
+    .device-title { font-weight: 600; color: var(--text-bright); margin-bottom: 0.25rem; }
+    .device-subtitle { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .device-details { font-family: 'Space Mono', monospace; font-size: 0.875rem; color: var(--text-dim); line-height: 1.6; }
+    .device-details div { margin-bottom: 0.25rem; }
+
+    /* ── SSID cards ── */
+    .ssid-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+    .ssid-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+    }
+    .ssid-card.v10 { border-top: 3px solid var(--v10); }
+    .ssid-card.v15 { border-top: 3px solid var(--v15); }
+    .ssid-card.v20 { border-top: 3px solid var(--v20); }
+    .ssid-card.v30 { border-top: 3px solid var(--v30); }
+    .ssid-card.v40 { border-top: 3px solid var(--v40); }
+    .ssid-card.v50 { border-top: 3px solid var(--v50); }
+    .ssid-card.v60 { border-top: 3px solid var(--v60); }
+    .ssid-name { font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem; }
+    .ssid-vlan { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.25rem; }
+    .ssid-ssid { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .ssid-clients { font-size: 0.875rem; color: var(--text-dim); line-height: 1.4; }
+
+    /* ── VLAN color text helpers ── */
+    .v10 { color: var(--v10); }
+    .v15 { color: var(--v15); }
+    .v20 { color: var(--v20); }
+    .v30 { color: var(--v30); }
+    .v40 { color: var(--v40); }
+    .v50 { color: var(--v50); }
+    .v60 { color: var(--v60); }
+
+    /* ── Firewall rules ── */
+    .rule-list { margin: 1rem 0; }
+    .rule-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .rule-item:last-child { border-bottom: none; }
+    .rule-icon { flex-shrink: 0; margin-top: -0.125rem; }
+    .rule-allow { color: var(--v30); font-size: 1.125rem; }
+    .rule-deny { color: var(--v10); font-size: 1.125rem; }
+    .rule-text { line-height: 1.5; }
+
+    /* ── Notes ── */
+    .note {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+      padding: 1rem;
+      margin: 1rem 0;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .note-title {
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .note-icon { color: var(--v40); }
+
+    /* ── Connector ── */
+    .connector {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 1rem auto;
+      height: 2rem;
+      position: relative;
+	  margin-top: 1.5rem;
+    }
+    .connector::before {
+      content: '';
+      display: block;
+      width: 2px;
+      height: 1.5rem;
+      background: linear-gradient(to bottom, var(--border-bright), var(--border));
+      margin: 0 auto;
+    }
+    .connector::after {
+      content: '▼';
+      font-size: 0.625rem;
+      color: var(--border-bright);
+      line-height: 1;
+    }
+    .connector-label {
+      position: absolute;
+      left: calc(50% + 0.5rem);
+      top: 0.25rem;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+
+    /* ── Trunk/Access badge helpers ── */
+    .badge-trunk {
+      color: #60a5fa;
+      font-size: 0.75rem;
+      background: rgba(59,130,246,0.1);
+      border: 1px solid rgba(59,130,246,0.25);
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: 'Space Mono', monospace;
+    }
+    .badge-access {
+      font-size: 0.75rem;
+      padding: 0.125rem 0.5rem;
+      border-radius: 0.25rem;
+      font-family: 'Space Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- ── Header ── -->
+    <div class="header">
+      <h1>HOME NETWORK</h1>
+      <p>Firewalla Gold SE · Zyxel XMG1915-10EP · Firewalla AP7 · v1.1</p>
+    </div>
+
+    <!-- ── WAN / Internet ── -->
+    <div class="section">
+      <div class="section-header">WAN / Internet</div>
+      <div class="box">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+            <circle cx="18" cy="18" r="16" stroke="#3a4656" stroke-width="1.5"/>
+            <ellipse cx="18" cy="18" rx="7" ry="16" stroke="#3a4656" stroke-width="1.2"/>
+            <line x1="2" y1="18" x2="34" y2="18" stroke="#3a4656" stroke-width="1.2"/>
+            <line x1="4" y1="10" x2="32" y2="10" stroke="#2a3441" stroke-width="1.2"/>
+            <line x1="4" y1="26" x2="32" y2="26" stroke="#2a3441" stroke-width="1.2"/>
+            <circle cx="18" cy="18" r="3" fill="#4cc9f0" opacity="0.6"/>
+          </svg>
+          <div>
+            <div class="box-title">Internet</div>
+            <div class="box-name">Altibox Fiber</div>
+            <div class="box-detail">Residential fiber — upstream provider</div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><span class="connector-label">Fiber in</span></div>
+
+      <div class="box" style="display:flex;align-items:flex-start;gap:1rem;">
+        <div style="flex-shrink:0;margin-top:1rem;">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none">
+            <rect x="6" y="14" width="24" height="10" rx="2" stroke="#3a4656" stroke-width="1.5" fill="none"/>
+            <line x1="10" y1="14" x2="8" y2="6" stroke="#3a4656" stroke-width="1.5"/>
+            <line x1="26" y1="14" x2="28" y2="6" stroke="#3a4656" stroke-width="1.5"/>
+            <path d="M6 8 Q18 2 30 8" stroke="#2a3441" stroke-width="1.2" fill="none"/>
+            <path d="M9 10 Q18 5 27 10" stroke="#2a3441" stroke-width="1.2" fill="none"/>
+            <circle cx="12" cy="19" r="1" fill="#4cc9f0" opacity="0.8"/>
+            <circle cx="16" cy="19" r="1" fill="#4cc9f0" opacity="0.5"/>
+            <circle cx="20" cy="19" r="1" fill="#4cc9f0" opacity="0.5"/>
+            <circle cx="24" cy="19" r="1" fill="#4cc9f0" opacity="0.5"/>
+          </svg>
+        </div>
+        <div>
+          <div class="box-title">ONT / Home Central</div>
+          <div class="box-name">Altibox FMG</div>
+          <div class="box-detail">Bridge mode — port 3 used as output</div>
+        </div>
+      </div>
+      <div class="connector"><span class="connector-label">Port 3 → WAN</span></div>
+    </div>
+
+    <!-- ── Router / Firewall ── -->
+    <div class="section">
+      <div class="section-header">Router / Firewall</div>
+      <div class="box" style="background:linear-gradient(135deg,#1a0e05 0%,#1e160f 100%);border-color:#4a2800;color:#ffb085;">
+        <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
+          <div style="flex-shrink:0;margin-top:0.5rem;">
+            <svg width="40" height="48" viewBox="0 0 40 48" fill="none">
+              <defs>
+                <linearGradient id="fwg-outer" x1="20" y1="0" x2="20" y2="48" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffb340"/>
+                  <stop offset="50%" stop-color="#ff8a20"/>
+                  <stop offset="100%" stop-color="#e04020"/>
+                </linearGradient>
+                <linearGradient id="fwg-inner" x1="20" y1="20" x2="20" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#1a0e05"/>
+                  <stop offset="100%" stop-color="#1a0e05"/>
+                </linearGradient>
+              </defs>
+              <path d="M20 1 C20 1 6 12 6 26 C6 36.5 12.2 44 20 44 C27.8 44 34 36.5 34 26 C34 12 20 1 20 1Z" fill="url(#fwg-outer)"/>
+              <path d="M20 20 C20 20 14 25.5 14 31 C14 35.5 16.7 39 20 39 C23.3 39 26 35.5 26 31 C26 25.5 20 20 20 20Z" fill="url(#fwg-inner)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="box-name" style="color:#ffb085;">Firewalla Gold SE</div>
+            <div class="box-detail" style="color:#a0603a;">Router Mode · Multi-VLAN · All gateways hosted here</div>
+          </div>
+        </div>
+
+        <!-- Firewalla port table — orange theme -->
+        <table class="table table--fw">
+          <thead>
+            <tr>
+              <th>Port</th><th>Speed</th><th>Role</th><th>Connected to</th><th>VLAN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="port-badge--fw port-badge--fw-unused">1</span></td>
+              <td style="color:#5a3824;">2.5 GbE</td>
+              <td style="color:#5a3824;">Unused</td>
+              <td style="color:#5a3824;">—</td>
+              <td style="color:#5a3824;">—</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge--fw">2</span></td>
+              <td>1 GbE</td>
+              <td>Emergency MGMT</td>
+              <td>Direct laptop access only</td>
+              <td><span class="v10">10</span></td>
+            </tr>
+            <tr>
+              <td><span class="port-badge--fw">3</span></td>
+              <td>1 GbE</td>
+              <td>WAN uplink</td>
+              <td>Altibox FMG (port 3)</td>
+              <td style="color:#a0603a;">—</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge--fw">4</span></td>
+              <td>2.5 GbE</td>
+              <td>LAN trunk</td>
+              <td>Zyxel XMG1915-10EP</td>
+              <td>
+                <span class="v10">10</span>&nbsp;
+                <span class="v15">15</span>&nbsp;
+                <span class="v20">20</span>&nbsp;
+                <span class="v30">30</span>&nbsp;
+                <span class="v40">40</span>&nbsp;
+                <span class="v50">50</span>&nbsp;
+                <span class="v60">60</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- VLAN table — orange theme -->
+        <table class="table table--fw">
+          <thead>
+            <tr>
+              <th>VLAN</th><th>Name</th><th>Subnet</th><th>Gateway</th><th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong class="v10">10</strong></td>
+              <td><strong class="v10">Core</strong></td>
+              <td>10.10.10.0/24</td>
+              <td>10.10.10.1</td>
+              <td>Infrastructure only · wired · no SSID</td>
+            </tr>
+            <tr>
+              <td><strong class="v15">15</strong></td>
+              <td><strong class="v15">Storage</strong></td>
+              <td>10.10.15.0/24</td>
+              <td>10.10.15.1</td>
+              <td>NAS · wired · no SSID</td>
+            </tr>
+            <tr>
+              <td><strong class="v20">20</strong></td>
+              <td><strong class="v20">Trusted</strong></td>
+              <td>10.10.20.0/24</td>
+              <td>10.10.20.1</td>
+              <td>Adults · laptops, phones, home office</td>
+            </tr>
+            <tr>
+              <td><strong class="v30">30</strong></td>
+              <td><strong class="v30">Kids</strong></td>
+              <td>10.10.30.0/24</td>
+              <td>10.10.30.1</td>
+              <td>Children · group-based policy on Gold SE</td>
+            </tr>
+            <tr>
+              <td><strong class="v40">40</strong></td>
+              <td><strong class="v40">IoT</strong></td>
+              <td>10.10.40.0/24</td>
+              <td>10.10.40.1</td>
+              <td>Smart home devices · internet only</td>
+            </tr>
+            <tr>
+              <td><strong class="v50">50</strong></td>
+              <td><strong class="v50">Guests</strong></td>
+              <td>10.10.50.0/24</td>
+              <td>10.10.50.1</td>
+              <td>Guest wifi via QR · fully isolated</td>
+            </tr>
+            <tr>
+              <td><strong class="v60">60</strong></td>
+              <td><strong class="v60">Media</strong></td>
+              <td>10.10.60.0/24</td>
+              <td>10.10.60.1</td>
+              <td>Sonos · WiiM · TVs · PVR · mDNS Relay</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="display:flex;align-items:center;gap:0.75rem;margin-top:1rem;padding:0.75rem;background:rgba(255,107,67,0.05);border:1px solid rgba(255,107,67,0.2);border-radius:0.5rem;">
+          <svg width="16" height="16" viewBox="0 0 14 14" fill="none">
+            <rect x="1" y="3" width="12" height="8" rx="1.5" stroke="#a0603a" stroke-width="1.2"/>
+            <path d="M5 3V2.5C5 1.7 5.7 1 6.5 1h1C8.3 1 9 1.7 9 2.5V3" stroke="#a0603a" stroke-width="1"/>
+            <circle cx="7" cy="7" r="1.5" fill="#a0603a"/>
+          </svg>
+          <div style="font-family:'Space Mono',monospace;font-size:0.875rem;color:#a0603a;">
+            USB Wi-Fi SD — WAN Failover (secondary internet when fiber is down)
+          </div>
+        </div>
+        <div style="margin-top:0.75rem;font-family:'Space Mono',monospace;font-size:0.875rem;color:#a0603a;">
+          mDNS Relay enabled — VLANs 20, 30, 60 (Sonos + WiiM discovery)
+        </div>
+      </div>
+      <div class="connector"><span class="connector-label">Port 4 / 2.5 GbE trunk</span></div>
+    </div>
+
+    <!-- ── Core Switch ── -->
+    <div class="section">
+      <div class="section-header">Core Switch</div>
+      <div class="box">
+        <div style="display:flex;align-items:flex-start;gap:1rem;margin-bottom:1rem;">
+          <div style="flex-shrink:0;margin-top:0.5rem;">
+          <svg width="40" height="40" viewBox="0 0 36 36" fill="none">
+            <rect x="6" y="14" width="30" height="10" rx="2" stroke="#3a4656" stroke-width="1.5" fill="none"/>
+            <circle cx="11" cy="19" r="1" fill="#4cc9f0" opacity="0.8"/>
+            <circle cx="15" cy="19" r="1" fill="#4cc9f0" opacity="0.5"/>
+            <circle cx="19" cy="19" r="1" fill="#4cc9f0" opacity="0.8"/>
+            <circle cx="23" cy="19" r="1" fill="#4cc9f0" opacity="0.8"/>
+            <circle cx="27" cy="19" r="1" fill="#4cc9f0" opacity="0.5"/>
+            <circle cx="31" cy="19" r="1" fill="#4cc9f0" opacity="0.8"/>
+          </svg>
+          </div>
+          <div>
+            <div class="box-name">Zyxel XMG1915-10EP</div>
+            <div class="box-detail">Management IP: 10.10.10.2 (VLAN 10 Core · static)</div>
+          </div>
+          <div style="margin-left:auto;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text-dim);">
+            10-port · 2.5G · PoE+ ready
+          </div>
+        </div>
+
+        <!-- Switch port table — grey theme -->
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Port</th><th>Speed</th><th>Connected to</th><th>Mode</th><th>VLAN(s)</th><th>PoE</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="port-badge">1</span></td>
+              <td>2.5GbE</td>
+              <td>Firewalla Gold SE</td>
+              <td><span class="badge-trunk">TRUNK</span></td>
+              <td>
+                <span class="v10">10</span>&nbsp;
+                <span class="v15">15</span>&nbsp;
+                <span class="v20">20</span>&nbsp;
+                <span class="v30">30</span>&nbsp;
+                <span class="v40">40</span>&nbsp;
+                <span class="v50">50</span>&nbsp;
+                <span class="v60">60</span>
+              </td>
+              <td style="color:var(--text-dimmed);">—</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge">2</span></td>
+              <td>2.5GbE</td>
+              <td>Sonos Boost</td>
+              <td><span class="badge-access v60">ACCESS</span></td>
+              <td><span class="v60">60 Media</span></td>
+              <td style="color:var(--text-dimmed);">✕</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge">3</span></td>
+              <td>2.5GbE</td>
+              <td>Philips Hue Bridge</td>
+              <td><span class="badge-access v40">ACCESS</span></td>
+              <td><span class="v40">40 IoT</span></td>
+              <td style="color:var(--text-dimmed);">✕</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge">4</span></td>
+              <td>2.5GbE</td>
+              <td>Altibox PVR / Decoder</td>
+              <td><span class="badge-access v60">ACCESS</span></td>
+              <td><span class="v60">60 Media</span></td>
+              <td style="color:var(--text-dimmed);">✕</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge">5</span></td>
+              <td>2.5GbE</td>
+              <td>NAS RN10200-100EUS</td>
+              <td><span class="badge-access v15">ACCESS</span></td>
+              <td><span class="v15">15 Storage</span></td>
+              <td style="color:var(--text-dimmed);">✕</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge port-badge--unused">6</span></td>
+              <td>2.5GbE</td>
+              <td style="color:var(--text-dimmed);">Unused</td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color:var(--text-dimmed);">ready</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge port-badge--unused">7</span></td>
+              <td>2.5GbE</td>
+              <td style="color:var(--text-dimmed);">Unused</td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color:var(--text-dimmed);">ready</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge">8</span></td>
+              <td>2.5GbE</td>
+              <td>Firewalla AP7</td>
+              <td><span class="badge-trunk">TRUNK</span></td>
+              <td>
+                <span class="v20">20</span>&nbsp;
+                <span class="v30">30</span>&nbsp;
+                <span class="v40">40</span>&nbsp;
+                <span class="v50">50</span>&nbsp;
+                <span class="v60">60</span>
+              </td>
+              <td style="color:var(--text-dimmed);">✕</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge port-badge--unused">9</span></td>
+              <td>SFP+/10GbE</td>
+              <td style="color:var(--text-dimmed);">Unused</td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color:var(--text-dimmed);">—</td>
+            </tr>
+            <tr>
+              <td><span class="port-badge port-badge--unused">10</span></td>
+              <td>SFP+/10GbE</td>
+              <td style="color:var(--text-dimmed);">Unused</td>
+              <td>—</td>
+              <td>—</td>
+              <td style="color:var(--text-dimmed);">—</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ── Wired Devices ── -->
+    <div class="section">
+      <div class="section-header">Wired Devices</div>
+      <div class="device-grid">
+        <div class="device-card v60">
+          <div class="device-card-header">
+            <div class="device-subtitle">VLAN 60 · Media · Port 2</div>
+            <div class="device-title">Sonos Boost</div>
+            <div class="device-subtitle">10.10.60.0/24</div>
+          </div>
+          <div class="device-details">
+            <div class="v60" style="font-size:0.75rem;margin-bottom:0.25rem;">SONOSNET MESH HUB</div>
+            <div>Beam — wired to Boost</div>
+            <div>Symfonisk ×2 — wireless</div>
+            <div>Play:1 ×2 — wireless</div>
+            <div>Play One ×1 — wireless</div>
+          </div>
+        </div>
+        <div class="device-card v40">
+          <div class="device-card-header">
+            <div class="device-subtitle">VLAN 40 · IoT · Port 3</div>
+            <div class="device-title">Philips Hue Bridge</div>
+            <div class="device-subtitle">10.10.40.0/24</div>
+          </div>
+          <div class="device-details">
+            <div class="v40" style="font-size:0.75rem;margin-bottom:0.25rem;">ZIGBEE DEVICES</div>
+            <div>Office — 2 lights</div>
+            <div>Frida — 1 light · 1 switch</div>
+            <div>Agnes — 1 light · 1 switch</div>
+            <div>Verksted — 3 lights · motion</div>
+          </div>
+        </div>
+        <div class="device-card v60">
+          <div class="device-card-header">
+            <div class="device-subtitle">VLAN 60 · Media · Port 4</div>
+            <div class="device-title">Altibox PVR / Decoder</div>
+            <div class="device-subtitle">10.10.60.0/24</div>
+          </div>
+          <div class="device-details">
+            <div class="v60" style="font-size:0.75rem;margin-bottom:0.25rem;">LIVE TV / MULTICAST</div>
+            <div>IGMP multicast</div>
+            <div>Verify IGMP snooping</div>
+            <div>on Zyxel after migration</div>
+          </div>
+        </div>
+      </div>
+      <div class="connector"><span class="connector-label">Port 8 / 2.5 GbE trunk</span></div>
+</div>
+
+    <!-- ── Access Point / WiFi ── -->
+    <div class="section">
+      <div class="section-header">Access Point / VLAN Overview — Trunk · Port 8</div>
+      <div class="box">
+        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+          <div style="flex-shrink:0;">
+            <svg width="40" height="48" viewBox="0 0 40 48" fill="none">
+              <defs>
+                <linearGradient id="ap7-outer" x1="20" y1="0" x2="20" y2="48" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffb340"/>
+                  <stop offset="50%" stop-color="#ff8a20"/>
+                  <stop offset="100%" stop-color="#e04020"/>
+                </linearGradient>
+                <linearGradient id="ap7-inner" x1="20" y1="20" x2="20" y2="44" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#1a0e05"/>
+                  <stop offset="100%" stop-color="#1a0e05"/>
+                </linearGradient>
+              </defs>
+              <path d="M20 1 C20 1 6 12 6 26 C6 36.5 12.2 44 20 44 C27.8 44 34 36.5 34 26 C34 12 20 1 20 1Z" fill="url(#ap7-outer)"/>
+              <path d="M20 20 C20 20 14 25.5 14 31 C14 35.5 16.7 39 20 39 C23.3 39 26 35.5 26 31 C26 25.5 20 20 20 20Z" fill="url(#ap7-inner)"/>
+            </svg>
+          </div>
+          <div>
+            <div class="box-title">Access Point</div>
+            <div class="box-name">Firewalla AP7</div>
+            <div class="box-detail">Static IP: 10.10.10.3 (VLAN 10 Core · static)</div>
+          </div>
+          <div style="margin-left:auto;text-align:right;">
+            <div style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text-dim);">Wi-Fi 7 · 802.11be</div>
+            <div style="font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text-dim);">Trunk port 8 · VLANs 20–60</div>
+          </div>
+        </div>
+        <div class="ssid-grid">
+          <div class="ssid-card v20">
+            <div class="ssid-name v20">Trusted</div>
+            <div class="ssid-vlan">VLAN 20 · 10.10.20.0/24</div>
+            <div class="ssid-ssid">SSID: mv4-trusted</div>
+            <div class="ssid-clients">2 adults<br>Laptops, phones,<br>home office</div>
+          </div>
+          <div class="ssid-card v30">
+            <div class="ssid-name v30">Kids</div>
+            <div class="ssid-vlan">VLAN 30 · 10.10.30.0/24</div>
+            <div class="ssid-ssid">SSID: mv4-kids</div>
+            <div class="ssid-clients">3 children<br>Tablets, phones<br>Group-based policy</div>
+          </div>
+          <div class="ssid-card v40">
+            <div class="ssid-name v40">IoT</div>
+            <div class="ssid-vlan">VLAN 40 · 10.10.40.0/24</div>
+            <div class="ssid-ssid">SSID: mv4-iot</div>
+            <div class="ssid-clients">IoT devices<br>Smart home<br>Internet only</div>
+          </div>
+          <div class="ssid-card v50">
+            <div class="ssid-name v50">Guests</div>
+            <div class="ssid-vlan">VLAN 50 · 10.10.50.0/24</div>
+            <div class="ssid-ssid">SSID: mv4-guests</div>
+            <div class="ssid-clients">Guests via QR<br>Internet only<br>Isolated</div>
+          </div>
+          <div class="ssid-card v60">
+            <div class="ssid-name v60">Media</div>
+            <div class="ssid-vlan">VLAN 60 · 10.10.60.0/24</div>
+            <div class="ssid-ssid">SSID: mv4-media</div>
+            <div class="ssid-clients">WiiM Mini · 2× TV · Sonos app clients</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Firewall Rules ── -->
+    <div class="section">
+      <div class="section-header">Inter-VLAN Firewall Rules</div>
+      <div class="box">
+        <div class="rule-list">
+          <div class="rule-item">
+            <div class="rule-icon rule-allow">✓</div>
+            <div class="rule-text"><strong class="v20">VLAN 20 Trusted</strong> → <strong class="v10">VLAN 10 Core</strong> — Only Trusted can manage infrastructure</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon rule-deny">✕</div>
+            <div class="rule-text">All other VLANs → <strong class="v10">VLAN 10 Core</strong> — Kids, IoT, Guests and Media have no access to infrastructure</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-allow rule-icon">✓</div>
+            <div class="rule-text"><strong class="v20">VLAN 20 Trusted</strong> → <strong class="v15">VLAN 15 Storage</strong> — Trusted can reach NAS</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-deny rule-icon">✕</div>
+            <div class="rule-text">All other VLANs → <strong class="v15">VLAN 15 Storage</strong> — Kids, IoT, Guests and Media cannot reach NAS</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon rule-allow">✓</div>
+            <div class="rule-text"><strong class="v20">VLAN 20</strong> + <strong class="v30">VLAN 30</strong> → <strong class="v60">VLAN 60</strong> — Trusted and Kids can reach Media (Sonos, TV)</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon rule-deny">✕</div>
+            <div class="rule-text"><strong class="v40">VLAN 40 IoT</strong> → all other VLANs — Internet only, no lateral access</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon rule-deny">✕</div>
+            <div class="rule-text"><strong class="v50">VLAN 50 Guests</strong> → all other VLANs — Internet only, fully isolated</div>
+          </div>
+          <div class="rule-item">
+            <div class="rule-icon rule-deny">✕</div>
+            <div class="rule-text"><strong class="v60">VLAN 60 Media</strong> → VLAN 20 / 30 — Media devices cannot initiate connections to Trusted or Kids</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Configuration Notes ── -->
+    <div class="section">
+      <div class="section-header">Configuration Notes</div>
+
+      <div class="note">
+        <div class="note-title"><span class="v10">ℹ</span><span class="v10">VLAN 10 Core — Infrastructure Isolation</span></div>
+        VLAN 10 is reserved exclusively for network infrastructure: Firewalla Gold SE, Zyxel XMG1915-10EP, and Firewalla AP7.
+        Only <strong class="v20">VLAN 20 Trusted</strong> is permitted to reach this segment for management.
+        Core is not advertised as a wireless SSID — the AP7 trunk on port 8 carries VLANs 20–60 only.
+      </div>
+
+      <div class="note">
+        <div class="note-title"><span class="note-icon">⚠</span> mDNS Relay (required)</div>
+        Sonos apps (on VLAN 20 / 30) must discover Sonos speakers (VLAN 60) across VLAN boundaries.
+        WiiM Mini control apps similarly need cross-VLAN mDNS. Enable the <strong>mDNS Relay</strong> on Firewalla Gold SE
+        and include <strong>VLANs 20, 30, and 60</strong>. Without this, Sonos and WiiM devices will not be discoverable
+        from Trusted or Kids networks.
+      </div>
+
+      <div class="note">
+        <div class="note-title"><span style="color:#7ec8e3;">⚠</span> IGMP Multicast — Altibox PVR (VLAN 60)</div>
+        Altibox uses IGMP multicast for live TV. After moving the PVR to VLAN 60, verify that
+        <strong>IGMP snooping</strong> is correctly configured on the Zyxel switch and that Firewalla
+        handles multicast routing for VLAN 60. Test live TV immediately after migration.
+      </div>
+
+      <div class="note">
+        <div class="note-title"><span class="v30">ℹ</span> USB Wi-Fi SD Failover</div>
+        The Firewalla Gold SE has a USB Wi-Fi SD adapter configured as a secondary WAN.
+        If the Altibox fiber connection drops, traffic will automatically failover to the backup connection.
+        VLAN segmentation and firewall rules remain active during failover.
+      </div>
+
+      <div class="note">
+        <div class="note-title"><span class="v50">ℹ</span> Static IP Reservations</div>
+        Infrastructure nodes use static IPs on VLAN 10 Core for stable firewall rules and logging:<br>
+        Zyxel XMG1915-10EP: <strong>10.10.10.2</strong> · Firewalla AP7: <strong>10.10.10.3</strong>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
