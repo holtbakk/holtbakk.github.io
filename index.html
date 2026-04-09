@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home network</title>
+  <title>Home Network</title>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -910,37 +910,7 @@
         <div class="note-title"><span class="v30">ℹ</span> SIEM</div>
         Raspberry PI + Wazuh. 
       </div>
-
-      <div class="note">
-        <div class="note-title"><span class="note-icon">⚠</span> mDNS Relay (required)</div>
-        Sonos apps (on VLAN 20 / 30) must discover Sonos speakers (VLAN 60) across VLAN boundaries.
-        WiiM Mini control apps similarly need cross-VLAN mDNS. Enable the <strong>mDNS Relay</strong> on Firewalla Gold SE
-        and include <strong>VLANs 20, 30, and 60</strong>. Without this, Sonos and WiiM devices will not be discoverable
-        from Trusted or Kids networks.
-      </div>
-
-      <div class="note">
-        <div class="note-title"><span style="color:#7ec8e3;">⚠</span> IGMP Multicast — Altibox PVR (VLAN 60)</div>
-        Altibox uses IGMP multicast for live TV. After moving the PVR to VLAN 60, verify that
-        <strong>IGMP snooping</strong> is correctly configured on the Zyxel switch and that Firewalla
-        handles multicast routing for VLAN 60. Test live TV immediately after migration.
-      </div>
-
-      <div class="note">
-        <div class="note-title"><span class="v30">ℹ</span> USB Wi-Fi SD Failover</div>
-        The Firewalla Gold SE has a USB Wi-Fi SD adapter configured as a secondary WAN.
-        If the Altibox fiber connection drops, traffic will automatically failover to the backup connection.
-        VLAN segmentation and firewall rules remain active during failover.
-      </div>
-
-      <div class="note">
-        <div class="note-title"><span class="v50">ℹ</span> Static IP Reservations</div>
-        Infrastructure nodes use static IPs on VLAN 10 Core for stable firewall rules and logging:<br>
-        Zyxel XMG1915-10EP: <strong>10.10.10.2</strong> · Firewalla AP7: <strong>10.10.10.3</strong>
-      </div>
     </div>
-
-
   </div>
 </body>
 </html>
