@@ -193,7 +193,7 @@
   <!-- ── Header ── -->
   <div class="header">
     <h1>HOME NETWORK</h1>
-    <p>Firewalla Gold SE · Zyxel XMG1915-10EP · Firewalla AP7 · v1.3</p>
+    <p>Firewalla Gold SE · Zyxel XMG1915-10EP · Firewalla AP7 · v1.3 (<span id="lastModified"></span>)</p>
   </div>
 
   <!-- ── WAN / Internet ── -->
@@ -695,5 +695,8 @@
   </div>
 
 </div>
+  <script>
+    document.getElementById("lastModified").textContent = document.lastModified;
+  </script>
 </body>
 </html>
