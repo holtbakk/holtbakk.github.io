@@ -17,7 +17,7 @@
       --text-bright:   #f0f4f8;
       --text-dimmed:   rgba(138,148,166,0.5);
 
-      --v01: #ff6b6b; --v01-bg: rgba(255,107,107,0.1); --v01-border: rgba(255,107,107,0.3);
+      --v1: #ff6b6b; --v1-bg: rgba(255,107,107,0.1); --v1-border: rgba(255,107,107,0.3);
       --v10: #ff6b6b; --v10-bg: rgba(255,107,107,0.1); --v10-border: rgba(255,107,107,0.3);
       --v15: #ff9f43; --v15-bg: rgba(255,159, 67,0.1); --v15-border: rgba(255,159, 67,0.3);
       --v20: #4cc9f0; --v20-bg: rgba( 76,201,240,0.1); --v20-border: rgba( 76,201,240,0.3);
@@ -88,7 +88,7 @@
       background: var(--surface); border: 1px solid var(--border-bright); color: var(--text-bright);
     }
     .port-badge--unused { color: var(--text-dimmed); border-color: var(--border); }
-    .port-badge.v01 { background: var(--v01-bg); border-color: var(--v01-border); color: var(--v01); }
+    .port-badge.v1 { background: var(--v1-bg); border-color: var(--v1-border); color: var(--v1); }
     .port-badge.v10 { background: var(--v10-bg); border-color: var(--v10-border); color: var(--v10); }
     .port-badge.v15 { background: var(--v15-bg); border-color: var(--v15-border); color: var(--v15); }
     .port-badge.v20 { background: var(--v20-bg); border-color: var(--v20-border); color: var(--v20); }
@@ -335,7 +335,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr><td><strong class="v01">1</strong></td><td><strong class="v01">Mgmt (LAN)</strong></td><td>10.10.1.0/24</td><td class="col-gw">10.10.1.1</td><td class="col-desc">Firewalla default LAN. For AP7.</td></tr>
+          <tr><td><strong class="v1">1</strong></td><td><strong class="v1">Mgmt (LAN)</strong></td><td>10.10.1.0/24</td><td class="col-gw">10.10.1.1</td><td class="col-desc">Firewalla default LAN. For AP7.</td></tr>
           <tr><td><strong class="v10">10</strong></td><td><strong class="v10">Core</strong></td><td>10.10.10.0/24</td><td class="col-gw">10.10.10.1</td><td class="col-desc">Infrastructure only · wired · no SSID</td></tr>
           <tr><td><strong class="v15">15</strong></td><td><strong class="v15">Storage</strong></td><td>10.10.15.0/24</td><td class="col-gw">10.10.15.1</td><td class="col-desc">NAS · wired · no SSID</td></tr>
           <tr><td><strong class="v20">20</strong></td><td><strong class="v20">Trusted</strong></td><td>10.10.20.0/24</td><td class="col-gw">10.10.20.1</td><td class="col-desc">Adults · laptops, phones, home office</td></tr>
