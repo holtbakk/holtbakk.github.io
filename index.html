@@ -185,7 +185,7 @@
   <!-- ── Header ── -->
   <div class="header">
     <h1>HOME NETWORK</h1>
-    <p>Firewalla Gold SE · Zyxel XMG1915-10EP · Firewalla AP7 · v1.3 · <a href="setup.html">Setup</a> (<span id="lastModified"></span>)</p>
+    <p>Firewalla Gold SE · Zyxel XMG1915-10EP · Firewalla AP7 · v1.3 (<span id="lastModified"></span>)</p>
   </div>
 
   <!-- ── WAN / Internet ── -->
@@ -283,21 +283,21 @@
             <td class="col-speed">2.5 GbE</td>
             <td>LAN trunk</td>
             <td>Zyxel XMG1915-10EP</td>
-            <td><span class="v01">1</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">2</span></td>
             <td class="col-speed">1 GbE</td>
-            <td>Emergency MGMT</td>
-            <td>Direct laptop access only</td>
-            <td><span class="v01">1</span>, <span class="v10">10 Core</span></td>
+            <td>MGMT</td>
+            <td>Direct access</td>
+            <td><span class="v01">Mgmt</span>, <span class="v10">10</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">3</span></td>
             <td class="col-speed">1 GbE</td>
             <td>IPTV LAN</td>
-            <td>Altibox PVR Modell A</td>
-            <td><span class="viptv">65-IPTV</span></td>
+            <td>Altibox PVR</td>
+            <td><span class="viptv">IPTV</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">4</span></td>
@@ -325,20 +325,20 @@
         <tbody>
           <!-- Native LANs -->
           <tr class="row-lan">
-            <td><strong class="v01">01</strong></td>
+            <td><!--<strong class="v01">01</strong>--></td>
             <td class="col-type"><span class="type-badge type-lan">LAN</span></td>
             <td><strong class="v01">Mgmt</strong></td>
             <td>10.10.1.0/24</td>
             <td class="col-gw">10.10.1.1</td>
-            <td class="col-desc">Firewalla default LAN · for AP7</td>
+            <td class="col-desc">Firewalla default LAN for management</td>
           </tr>
           <tr class="row-lan">
-            <td><strong class="viptv">65</strong></td>
+            <td><!--<strong class="viptv">65</strong>--></td>
             <td class="col-type"><span class="type-badge type-lan">LAN</span></td>
             <td><strong class="viptv">IPTV</strong></td>
             <td>—</td>
             <td class="col-gw">—</td>
-            <td class="col-desc">Altibox IPTV · port 3 · bridged to WAN</td>
+            <td class="col-desc">Confine Altibox IPTV multicast here</td>
           </tr>
           <!-- 802.1Q VLANs -->
           <tr>
