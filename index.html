@@ -17,7 +17,7 @@
       --text-bright:   #f0f4f8;
       --text-dimmed:   rgba(138,148,166,0.5);
 
-      /* LAN 01 — MGMT */
+      /* LAN 01 — Mgmt */
       --v01: #b34b4b; --v01-bg: rgba(179,75,75,0.1); --v01-border: rgba(179,75,75,0.3);
 
       /* VLANs */
@@ -283,14 +283,14 @@
             <td class="col-speed">2.5 GbE</td>
             <td>LAN trunk</td>
             <td>Zyxel XMG1915-10EP</td>
-            <td><span class="v01">MGMT</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">2</span></td>
             <td class="col-speed">1 GbE</td>
             <td>MGMT</td>
             <td>Direct access</td>
-            <td><span class="v01">MGMT</span>, <span class="v10">10</span></td>
+            <td><span class="v01">Mgmt</span>, <span class="v10">10</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">3</span></td>
@@ -327,7 +327,7 @@
           <tr class="row-lan">
             <td><!--<strong class="v01">01</strong>--></td>
             <td class="col-type"><span class="type-badge type-lan">LAN</span></td>
-            <td><strong class="v01">MGMT</strong></td>
+            <td><strong class="v01">Mgmt</strong></td>
             <td>10.10.1.0/24</td>
             <td class="col-gw">10.10.1.1</td>
             <td class="col-desc">Firewalla default LAN for management</td>
@@ -432,7 +432,7 @@
         <div style="flex:1;">
           <div class="box-title">Managed Switch</div>
           <div class="box-name">Zyxel XMG1915-10EP (Core-SW01)</div>
-          <div class="box-detail">Static IP: 10.10.1.2 · MGMT LAN</div>
+          <div class="box-detail">Static IP: 10.10.1.2 · Mgmt LAN</div>
         </div>
         <div style="font-family:'Space Mono',monospace;font-size:0.7rem;color:var(--text-dimmed);white-space:nowrap;">10-port · 2.5G · PoE+</div>
       </div>
@@ -455,7 +455,7 @@
             <td class="col-speed">2.5GbE</td>
             <td>Firewalla Gold SE</td>
             <td><span class="badge-trunk">TRUNK</span></td>
-            <td><span class="v01">MGMT</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
             <td class="col-poe" style="color:var(--text-dimmed);">—</td>
           </tr>
           <tr>
@@ -511,7 +511,7 @@
             <td class="col-speed">2.5GbE</td>
             <td>Firewalla AP7</td>
             <td><span class="badge-trunk">TRUNK</span></td>
-            <td><span class="v01">MGMT</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">Mgmt</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
             <td class="col-poe" style="color:var(--text-dimmed);">✕</td>
           </tr>
           <tr>
@@ -596,7 +596,7 @@
         <div>
           <div class="box-title">Access Point</div>
           <div class="box-name">Firewalla AP7 (Access-AP01)</div>
-          <div class="box-detail">Static IP: 10.10.1.3 · MGMT LAN · Wi-Fi 7 · 802.11be · Trunk port 8 · VLANs 20–60</div>
+          <div class="box-detail">Static IP: 10.10.1.3 · Mgmt LAN · Wi-Fi 7 · 802.11be · Trunk port 8 · VLANs 20–60</div>
         </div>
       </div>
 
@@ -674,63 +674,6 @@
           <span class="vqlan-badge">Phone</span><span class="vqlan-badge">Tablet</span>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- ── Firewall Rules ── -->
-  <div class="section">
-    <div class="section-header">Inter-VLAN Firewall Rules</div>
-    <div class="box">
-      <div class="rule-list">
-        <div class="rule-item"><div class="rule-icon rule-allow">✓</div><div class="rule-text"><strong class="v20">VLAN 20 Trusted</strong> → <strong class="v10">VLAN 10 Core</strong> — Only Trusted can manage infrastructure</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text">All other VLANs → <strong class="v10">VLAN 10 Core</strong> — No access to infrastructure</div></div>
-        <div class="rule-item"><div class="rule-icon rule-allow">✓</div><div class="rule-text"><strong class="v20">VLAN 20 Trusted</strong> → <strong class="v15">VLAN 15 Storage</strong> — Trusted can reach NAS</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text">All other VLANs → <strong class="v15">VLAN 15 Storage</strong> — No access to NAS</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text"><strong class="v15">VLAN 15 Storage</strong> → <strong class="v20">VLAN 20 Trusted</strong> — NAS cannot initiate connections to clients</div></div>
-        <div class="rule-item"><div class="rule-icon rule-allow">✓</div><div class="rule-text"><strong class="v20">VLAN 20</strong> + <strong class="v30">VLAN 30</strong> → <strong class="v60">VLAN 60</strong> — Trusted and Kids can reach Media</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text"><strong class="v40">VLAN 40 IoT</strong> → all other VLANs — Internet only, no lateral access</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text"><strong class="v50">VLAN 50 Guests</strong> → all other VLANs — Internet only, fully isolated</div></div>
-        <div class="rule-item"><div class="rule-icon rule-deny">✕</div><div class="rule-text"><strong class="v60">VLAN 60 Media</strong> → VLAN 20 / 30 — Media cannot initiate connections to Trusted or Kids</div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Configuration Notes ── -->
-  <div class="section">
-    <div class="section-header">Configuration Notes</div>
-
-    <div class="note">
-      <div class="note-title"><span class="v10">ℹ</span><span class="v10"> VLAN 10 Core — Infrastructure Isolation</span></div>
-      Reserved for Firewalla Gold SE, Zyxel XMG1915-10EP, and Firewalla AP7. Only <strong class="v20">VLAN 20 Trusted</strong> may reach this segment. Not advertised as an SSID — AP7 trunk carries VLANs 20–60 only.
-    </div>
-
-    <div class="note">
-      <div class="note-title"><span style="color:var(--v40);">⚠</span> mDNS Relay (required)</div>
-      Sonos and WiiM apps on VLAN 20/30 must discover devices on VLAN 60. Enable <strong>mDNS Relay</strong> on Firewalla Gold SE for VLANs <strong>20, 30, and 60</strong>.
-    </div>
-
-    <div class="note">
-      <div class="note-title"><span style="color:#7ec8e3;">⚠</span> IGMP Multicast — Altibox PVR</div>
-      Altibox IPTV uses IGMP multicast. IGMP Proxy is enabled on Firewalla WAN port. IGMP Snooping is enabled on Zyxel for VLAN 60. PVR is connected via port 3 on Firewalla (LAN 65-IPTV, bridged directly to WAN).
-    </div>
-
-    <div class="note">
-      <div class="note-title"><span class="v30">ℹ</span> WAN Failover</div>
-      USB Wi-Fi SD adapter on Firewalla Gold SE. If fiber drops, 5G phone hotspot handles WAN. VLAN segmentation and firewall rules stay active during failover.
-    </div>
-
-    <div class="note">
-      <div class="note-title"><span class="v50">ℹ</span> Static IP Reservations</div>
-      Zyxel XMG1915-10EP: <strong>10.10.10.2</strong> · Firewalla AP7: <strong>10.10.10.3</strong> — both on VLAN 10 Core.
-    </div>
-  </div>
-
-  <!-- ── TODO ── -->
-  <div class="section">
-    <div class="section-header">TODO</div>
-    <div class="note">
-      <div class="note-title"><span class="v30">ℹ</span> SIEM — Raspberry Pi + Wazuh</div>
-      Consider VLAN placement: VLAN 10 Core (infrastructure peer) or a dedicated VLAN 12 for security monitoring with read access across segments. Assign static IP and DHCP reservation on deployment.
     </div>
   </div>
 
