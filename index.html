@@ -17,7 +17,7 @@
       --text-bright:   #f0f4f8;
       --text-dimmed:   rgba(138,148,166,0.5);
 
-      /* LAN 01 — Mgmt */
+      /* LAN 01 — MGMT */
       --v01: #b34b4b; --v01-bg: rgba(179,75,75,0.1); --v01-border: rgba(179,75,75,0.3);
 
       /* VLANs */
@@ -275,14 +275,14 @@
             <td class="col-speed">2.5 GbE</td>
             <td>LAN trunk</td>
             <td>Zyxel XMG1915-10EP</td>
-            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">MGMT</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">2</span></td>
             <td class="col-speed">1 GbE</td>
             <td>MGMT</td>
             <td>Direct access</td>
-            <td><span class="v01">Mgmt</span>, <span class="v10">10</span></td>
+            <td><span class="v01">MGMT</span>, <span class="v10">10</span></td>
           </tr>
           <tr>
             <td><span class="port-badge">3</span></td>
@@ -318,7 +318,7 @@
           <tr class="row-lan">
             <td><!--<strong class="v01">01</strong>--></td>
             <td class="col-type"><span class="type-badge type-lan">LAN</span></td>
-            <td><strong class="v01">Mgmt</strong></td>
+            <td><strong class="v01">MGMT</strong></td>
             <td>10.10.1.0/24</td>
             <td class="col-gw">10.10.1.1</td>
             <td class="col-desc">Firewalla default LAN for management</td>
@@ -419,7 +419,7 @@
         <div style="flex:1;">
           <div class="box-title">Managed Switch</div>
           <div class="box-name">Zyxel XMG1915-10EP (Core-SW01)</div>
-          <div class="box-detail">Static IP: 10.10.1.2 · Mgmt LAN · 10-port · 2.5G · PoE++</div>
+          <div class="box-detail">Static IP: 10.10.1.2 · MGMT LAN · 10-port · 2.5G · PoE++</div>
         </div>
       </div>
       <!-- Switch table — Mobile: Speed, PoE hidden -->
@@ -440,8 +440,8 @@
             <td class="col-speed">2.5GbE</td>
             <td>Firewalla Gold SE</td>
             <td><span class="badge-trunk">TRUNK</span></td>
-            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
-            <td><span class="v01">Mgmt</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">MGMT</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">MGMT</span>, <span class="v10">10</span>, <span class="v15">15</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
             <td class="col-poe" style="color:var(--text-dimmed);">✕</td>
           </tr>
           <tr>
@@ -497,7 +497,7 @@
             <td class="col-speed">2.5GbE</td>
             <td>Firewalla AP7</td>
             <td><span class="badge-trunk">TRUNK</span></td>
-            <td><span class="v01">Mgmt</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
+            <td><span class="v01">MGMT</span>, <span class="v20">20</span>, <span class="v30">30</span>, <span class="v40">40</span>, <span class="v50">50</span>, <span class="v60">60</span></td>
             <td class="col-poe" style="color:var(--text-dimmed);">✕</td>
           </tr>
           <tr>
@@ -532,7 +532,7 @@
         </div>
         <div class="device-details">
           <div class="v60" style="font-size:0.75rem;margin-bottom:0.25rem;">SONOSNET MESH HUB</div>
-          <div>Beam  x1 — wired to Boost</div>
+          <div>Beam  ×1— wired to Boost</div>
           <div>Symfonisk ×2 — wireless</div>
           <div>Play:1 ×2 — wireless</div>
           <div>Play One ×1 — wireless</div>
@@ -579,7 +579,7 @@
         <div>
           <div class="box-title">Access Point</div>
           <div class="box-name">Firewalla AP7 (Access-AP01)</div>
-          <div class="box-detail">Static IP: 10.10.1.3 · Mgmt LAN · Wi-Fi 7 · 802.11be · Trunk port 8 · VLANs 20–60</div>
+          <div class="box-detail">Static IP: 10.10.1.3 · MGMT LAN · Wi-Fi 7 · 802.11be · Trunk port 8 · VLANs 20–60</div>
         </div>
       </div>
       <div class="ssid-grid">
