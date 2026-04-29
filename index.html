@@ -140,10 +140,11 @@
     .ssid-card.v20{border-top:3px solid var(--v20)} .ssid-card.v30{border-top:3px solid var(--v30)}
     .ssid-card.v40{border-top:3px solid var(--v40)} .ssid-card.v50{border-top:3px solid var(--v50)}
     .ssid-card.v60{border-top:3px solid var(--v60)}
-    .ssid-name    { font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem; }
-    .ssid-vlan    { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.25rem; }
-    .ssid-ssid    { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem; }
-    .ssid-clients { font-size: 0.875rem; color: var(--text-dim); line-height: 1.4; }
+    .ssid-name     { font-weight: 600; margin-bottom: 0.25rem; font-size: 0.95rem; }
+    .ssid-vlan     { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.25rem; }
+    .ssid-ssid     { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .ssid-security { font-family: 'Space Mono', monospace; font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.5rem; }
+    .ssid-clients  { font-size: 0.875rem; color: var(--text-dim); line-height: 1.4; }
 
     /* ── Firewall rules ── */
     .rule-list { margin: 0.5rem 0; }
@@ -635,12 +636,14 @@
           <div class="ssid-name v20">Trusted</div>
           <div class="ssid-vlan">VLAN 20 · 10.10.20.0/24</div>
           <div class="ssid-ssid">SSID: mv4-trusted</div>
+          <div class="ssid-security">Security: WPA3 Enterprise</div>
           <div class="ssid-clients">2 adults · laptops, phones, home office</div>
         </div>
         <div class="ssid-card v30">
           <div class="ssid-name v30">Kids</div>
           <div class="ssid-vlan">VLAN 30 · 10.10.30.0/24</div>
           <div class="ssid-ssid">SSID: mv4-kids</div>
+          <div class="ssid-security">Security: WPA3 Enterprise</div>
           <div class="ssid-clients">3 children · VqLAN per-user policies</div>
         </div>
         <div class="ssid-card v40">
