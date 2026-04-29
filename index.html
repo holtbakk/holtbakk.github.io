@@ -639,7 +639,7 @@
           <div class="ssid-ssid">SSID: mv4-trusted</div>
           <div class="ssid-security">🔒 WPA3 Enterprise</div>
           <div class="ssid-band">Band: 2.4 + 5 + 6 GHz</div>
-          <div class="ssid-clients">2 adults · laptops, phones, home office</div>
+          <div class="ssid-clients">2 adults · laptops, phones · Smart Queue: Teams</div>
         </div>
         <div class="ssid-card v30">
           <div class="ssid-name v30">Kids</div>
@@ -647,7 +647,7 @@
           <div class="ssid-ssid">SSID: mv4-kids</div>
           <div class="ssid-security">🔒 WPA3 Enterprise</div>
            <div class="ssid-band">Band: 2.4 + 5 GHz</div>
-         <div class="ssid-clients">3 children · VqLAN per-user policies</div>
+         <div class="ssid-clients">3 children · VqLAN pr. kid · Smart Queue: Gaming sites</div>
         </div>
         <div class="ssid-card v40">
           <div class="ssid-name v40">IoT</div>
@@ -663,7 +663,7 @@
           <div class="ssid-ssid">SSID: mv4-guests</div>
           <div class="ssid-security">🔒 Mixed Personal (QR)</div>
           <div class="ssid-band">Band: 2.4 + 5 GHz</div>
-          <div class="ssid-clients">Guests via QR · Internet only · Isolated</div>
+          <div class="ssid-clients">Guests · Internet only · Isolated</div>
         </div>
         <div class="ssid-card v60">
           <div class="ssid-name v60">Media</div>
@@ -671,7 +671,7 @@
           <div class="ssid-ssid">SSID: mv4-media</div>
           <div class="ssid-security">🔒 Mixed Personal</div>
           <div class="ssid-band">Band: 2.4 + 5 GHz</div>
-          <div class="ssid-clients">WiiM Mini · 2× TV</div>
+          <div class="ssid-clients">WiiM Mini · TVs · Internet only · Isolated</div>
         </div>
       </div>
       <div class="vqlan-header">VqLAN Microsegmentation — VLAN 30 Kids</div>
@@ -680,7 +680,7 @@
       </div>
       <div class="vqlan-grid">
         <div class="vqlan-card vqlan-card--17">
-          <div class="vqlan-name">Boy · 17</div>
+          <div class="vqlan-name">Kid · 17</div>
           <div class="vqlan-sub">VqLAN Group · VLAN 30 · mv4-kids</div>
           <div class="vqlan-divider"></div>
           <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-allow">✓</span><span>Internet access · Family protect on</span></div>
@@ -690,24 +690,25 @@
           <span class="vqlan-badge">Phone</span><span class="vqlan-badge">Laptop</span><span class="vqlan-badge">Gaming computer</span>
         </div>
         <div class="vqlan-card vqlan-card--14">
-          <div class="vqlan-name">Girl · 14</div>
+          <div class="vqlan-name">Kid · 14</div>
           <div class="vqlan-sub">VqLAN Group · VLAN 30 · mv4-kids</div>
           <div class="vqlan-divider"></div>
           <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-allow">✓</span><span>Internet access · Family protect on</span></div>
           <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-deny">✕</span><span>Isolated</span></div>
-          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Curfew: 22:00 – 07:00 blocked</span></div>
-          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Daily quota: max 4h</span></div>
+          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Off hours: 22:00 – 07:00</span></div>
+          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Daily quota: Max 4h</span></div>
           <div class="vqlan-divider"></div>
           <span class="vqlan-badge">Phone</span><span class="vqlan-badge">Laptop</span>
         </div>
         <div class="vqlan-card vqlan-card--11">
-          <div class="vqlan-name">Girl · 11</div>
+          <div class="vqlan-name">Kid · 11</div>
           <div class="vqlan-sub">VqLAN Group · VLAN 30 · mv4-kids</div>
           <div class="vqlan-divider"></div>
           <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-allow">✓</span><span>Internet access · Family protect on</span></div>
           <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-deny">✕</span><span>Isolated</span></div>
-          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Curfew: 21:00 - 07:00 blocked</span></div>
-          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Daily quota: max 3h</span></div>
+          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-deny">✕</span><span>Social blocked</span></div>
+          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Off hours: 21:00 - 07:00</span></div>
+          <div class="vqlan-rule"><span class="vqlan-rule-icon vqlan-warn">◔</span><span>Daily quota: Max 3h</span></div>
           <div class="vqlan-divider"></div>
           <span class="vqlan-badge">Phone</span><span class="vqlan-badge">Tablet</span>
         </div>
